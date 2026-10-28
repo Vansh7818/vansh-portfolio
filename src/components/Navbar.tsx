@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Code2, FileText, Mail, ArrowUpRight } from "lucide-react";
 import ResumeModal from "@/components/ResumeModal";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -51,7 +52,7 @@ export default function Navbar() {
         transition={{ duration: 0.45, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           scrolled
-            ? "bg-background/85 backdrop-blur-xl border-b border-border/80 shadow-lg shadow-black/25"
+            ? "bg-background/85 backdrop-blur-xl border-b border-border/80 shadow-lg shadow-black/10 dark:shadow-black/25"
             : "bg-transparent border-b border-transparent"
         }`}
       >
@@ -60,7 +61,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex items-center gap-2.5 group"
+              className="flex items-center gap-2.5 group cursor-pointer"
             >
               <div className="w-9 h-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center group-hover:bg-primary/25 transition-all group-hover:scale-105">
                 <Code2 className="w-4 h-4 text-primary" />
@@ -76,19 +77,19 @@ export default function Navbar() {
             </button>
 
             {/* Recruiter Availability Beacon */}
-            <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>Available for SDE Roles</span>
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1 bg-secondary/50 border border-border/60 px-2 py-1 rounded-full backdrop-blur-md">
+          <nav className="hidden md:flex items-center gap-1 bg-secondary/60 border border-border/70 px-2 py-1 rounded-full backdrop-blur-md">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleNav(link.href)}
-                className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-full transition-colors ${
+                className={`relative px-3.5 py-1.5 text-xs font-semibold rounded-full transition-colors cursor-pointer ${
                   active === link.href.slice(1)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -97,7 +98,7 @@ export default function Navbar() {
                 {active === link.href.slice(1) && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 bg-background border border-border/80 shadow-sm rounded-full"
+                    className="absolute inset-0 bg-background border border-border shadow-sm rounded-full"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.35 }}
                   />
                 )}
@@ -108,6 +109,8 @@ export default function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-2.5">
+            <ThemeToggle />
+
             <a
               href="https://github.com/Vansh7818"
               target="_blank"
@@ -119,7 +122,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsResumeOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold border border-border bg-card hover:bg-secondary rounded-lg text-foreground transition-all active:scale-95 shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold border border-border bg-card hover:bg-secondary rounded-xl text-foreground transition-all active:scale-95 shadow-sm cursor-pointer"
             >
               <FileText className="w-3.5 h-3.5 text-primary" />
               Resume
@@ -127,7 +130,7 @@ export default function Navbar() {
 
             <button
               onClick={() => handleNav("#contact")}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold bg-primary text-primary-foreground rounded-lg hover:opacity-90 active:scale-95 transition-all shadow-md shadow-primary/20"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold bg-primary text-primary-foreground rounded-xl hover:opacity-90 active:scale-95 transition-all shadow-md shadow-primary/20 cursor-pointer"
             >
               <span>Get in Touch</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -136,6 +139,8 @@ export default function Navbar() {
 
           {/* Mobile Right Controls */}
           <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle />
+
             <button
               onClick={() => setIsResumeOpen(true)}
               className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-semibold border border-border bg-secondary/80 rounded-lg text-foreground"
@@ -166,9 +171,12 @@ export default function Navbar() {
             className="fixed inset-x-0 top-16 sm:top-20 z-30 md:hidden bg-background/95 backdrop-blur-2xl border-b border-border shadow-2xl"
           >
             <nav className="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-1.5">
-              <div className="flex items-center gap-2 pb-3 mb-2 border-b border-border text-xs text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-emerald-400 font-medium">Available for SDE Roles (2026–2027)</span>
+              <div className="flex items-center justify-between pb-3 mb-2 border-b border-border text-xs text-muted-foreground">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-emerald-600 dark:text-emerald-400 font-medium">Available for SDE Roles</span>
+                </span>
+                <ThemeToggle />
               </div>
 
               {navLinks.map((link) => (
