@@ -2,57 +2,65 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { GitBranch, Star, GitFork } from "lucide-react";
+import { GitBranch, Star, GitFork, ExternalLink, Code2 } from "lucide-react";
 
 export default function GitHubSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   const platforms = [
     {
       name: "GitHub",
       handle: "Vansh7818",
       url: "https://github.com/Vansh7818",
-      description: "Full-stack, Java, and MERN projects with consistent commit history.",
+      description:
+        "Full-stack web applications, Java enterprise systems, microservices, and modern UI engineering with active commits.",
       stats: [
-        { icon: Star, label: "Public Repos", value: "6+" },
-        { icon: GitFork, label: "Projects", value: "6" },
+        { label: "Public Repos", value: "13+" },
+        { label: "Active Stacks", value: "React & Java" },
       ],
-      color: "border-zinc-700/60 hover:border-zinc-500/60",
-      accentColor: "text-white",
+      badgeColor: "border-zinc-700 bg-zinc-800/60 text-white",
+      accent: "text-white",
     },
     {
       name: "LeetCode",
       handle: "Vansh7818",
       url: "https://leetcode.com/Vansh7818/",
-      description: "Daily DSA practice in Java — arrays, trees, graphs, DP, and interview sets.",
+      description:
+        "Consistent daily practice in Java covering core DSA: Arrays, Two Pointers, Trees, Backtracking, and Dynamic Programming.",
       stats: [
-        { icon: Star, label: "Focus", value: "DSA" },
-        { icon: GitFork, label: "Language", value: "Java" },
+        { label: "Problems Solved", value: "100+" },
+        { label: "Primary Language", value: "Java" },
       ],
-      color: "border-amber-700/40 hover:border-amber-500/50",
-      accentColor: "text-amber-400",
+      badgeColor: "border-amber-500/30 bg-amber-500/10 text-amber-400",
+      accent: "text-amber-400",
     },
   ];
 
   return (
-    <section className="py-24 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 relative" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-12 max-w-2xl"
         >
-          <p className="text-primary text-sm font-semibold tracking-widest uppercase mb-3">
-            Coding
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
-            Where I build &amp; practice.
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider uppercase mb-3">
+            <Code2 className="w-3.5 h-3.5" />
+            <span>Developer Presence</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+            Code &amp; Problem Solving.
           </h2>
+          <p className="mt-2 text-sm sm:text-base text-muted-foreground">
+            Where I push production code, review architectural patterns, and sharpen algorithmic fluency.
+          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-5 mb-10">
+        {/* 2 Platform Cards */}
+        <div className="grid sm:grid-cols-2 gap-6 mb-8">
           {platforms.map((platform, i) => (
             <motion.a
               key={platform.name}
@@ -62,29 +70,35 @@ export default function GitHubSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`group p-6 rounded-xl border bg-card transition-all duration-200 card-hover ${platform.color}`}
+              className="group p-6 sm:p-7 rounded-2xl border border-border bg-card/85 backdrop-blur-sm card-hover flex flex-col justify-between"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <p className={`text-sm font-semibold ${platform.accentColor}`}>
-                    {platform.name}
-                  </p>
-                  <p className="text-xs text-muted-foreground font-mono mt-0.5">
-                    @{platform.handle}
-                  </p>
+              <div>
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className={`text-lg font-bold ${platform.accent}`}>
+                        {platform.name}
+                      </p>
+                      <span className="text-xs text-muted-foreground font-mono">
+                        @{platform.handle}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-2 rounded-lg border border-border group-hover:border-primary/40 group-hover:bg-primary/10 text-muted-foreground group-hover:text-primary transition-colors">
+                    <ExternalLink className="w-4 h-4" />
+                  </div>
                 </div>
-                <GitBranch className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
+                  {platform.description}
+                </p>
               </div>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-                {platform.description}
-              </p>
-
-              <div className="flex gap-6">
-                {platform.stats.map((stat) => (
-                  <div key={stat.label}>
-                    <p className="text-lg font-bold text-foreground">{stat.value}</p>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
+              <div className="pt-4 border-t border-border flex items-center gap-8">
+                {platform.stats.map((s) => (
+                  <div key={s.label}>
+                    <p className="text-lg font-bold text-foreground">{s.value}</p>
+                    <p className="text-[11px] text-muted-foreground">{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -92,29 +106,38 @@ export default function GitHubSection() {
           ))}
         </div>
 
-        {/* GitHub contribution embed */}
+        {/* GitHub Contribution Heatmap Frame */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="p-6 rounded-xl border border-border bg-card overflow-hidden"
+          className="p-6 rounded-2xl border border-border bg-card/85 backdrop-blur-sm overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-4">
-            <p className="text-sm font-semibold text-foreground">Contribution Activity</p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+            <div>
+              <p className="text-sm font-bold text-foreground">
+                GitHub Contribution Activity
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Public commits, pull requests, and open-source code
+              </p>
+            </div>
             <a
               href="https://github.com/Vansh7818"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
             >
-              View on GitHub →
+              <span>View github.com/Vansh7818</span>
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>
-          <div className="overflow-x-auto">
+
+          <div className="overflow-x-auto py-2">
             <img
               src="https://ghchart.rshah.org/6366f1/Vansh7818"
               alt="Vansh Jain GitHub contribution graph"
-              className="w-full min-w-[600px] opacity-80 rounded"
+              className="w-full min-w-[650px] opacity-85 hover:opacity-100 transition-opacity rounded"
               loading="lazy"
             />
           </div>

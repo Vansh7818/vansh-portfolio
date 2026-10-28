@@ -1,48 +1,57 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+export const viewport: Viewport = {
+  themeColor: "#0d0e15",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
-  title: "Vansh Jain — Full-Stack Developer",
+  title: "Vansh Jain | Software Development Engineer & Full-Stack Developer",
   description:
-    "Portfolio of Vansh Jain, a B.Tech CSE student and full-stack developer building scalable web applications with React, Next.js, Java, and Node.js. Seeking software engineering internships for 2026.",
+    "Portfolio of Vansh Jain — Software Development Intern at KyronDataTech and B.Tech CSE undergraduate. Specializing in React, Next.js 14, Java REST APIs, Spring Boot, and scalable system architecture.",
   keywords: [
     "Vansh Jain",
+    "Software Engineer",
     "Full Stack Developer",
     "React Developer",
     "Next.js",
     "Java Developer",
-    "Software Engineering Intern",
+    "Spring Boot",
+    "SDE Intern",
+    "Parul University",
+    "KyronDataTech",
+    "LeetCode DSA",
     "Portfolio",
-    "B.Tech CSE",
   ],
   authors: [{ name: "Vansh Jain", url: "https://github.com/Vansh7818" }],
   creator: "Vansh Jain",
+  metadataBase: new URL("https://vansh-portfolio-three-eta.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Vansh Jain — Full-Stack Developer",
+    url: "https://vansh-portfolio-three-eta.vercel.app",
+    title: "Vansh Jain | Software Development Engineer & Full-Stack Developer",
     description:
-      "B.Tech CSE student building scalable full-stack applications with React, Next.js, Java, and Node.js.",
+      "Software Development Intern at KyronDataTech & B.Tech CSE. Building production-grade web systems with React, Next.js, Java, and Node.js.",
     siteName: "Vansh Jain Portfolio",
+    images: [
+      {
+        url: "/images/profile.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Vansh Jain — Software Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vansh Jain — Full-Stack Developer",
+    title: "Vansh Jain | Software Development Engineer & Full-Stack Developer",
     description:
-      "B.Tech CSE student building scalable full-stack applications with React, Next.js, Java, and Node.js.",
+      "Software Development Intern at KyronDataTech & B.Tech CSE. Building production-grade web systems with React, Next.js, Java, and Node.js.",
+    images: ["/images/profile.jpg"],
   },
   robots: {
     index: true,
@@ -56,11 +65,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+    <html lang="en" className="h-full scroll-smooth antialiased">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary/30 selection:text-foreground">
         {children}
       </body>
     </html>

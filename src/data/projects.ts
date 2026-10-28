@@ -1,111 +1,153 @@
 export interface Project {
+  id: string;
   title: string;
+  subtitle: string;
   description: string;
-  longDescription: string;
+  highlights: string[];
   tech: string[];
   github: string;
-  live: string;
+  live?: string;
   featured: boolean;
-  category: string;
+  category: "Full Stack" | "Backend" | "AI & Systems";
+  badge?: string;
 }
 
-const projects: Project[] = [
+export const projectsData: Project[] = [
   {
-    title: "Sensai — AI Career Coach",
+    id: "teerthankar-ai",
+    title: "Teerthankar AI Platform",
+    subtitle: "AI-Powered Career & Placement Preparation Suite",
     description:
-      "AI-powered career coaching platform that conducts mock exams, generates ATS-optimized resumes, and builds tailored cover letters for students using Gemini AI and advanced MERN technologies.",
-    longDescription:
-      "A comprehensive, production-grade AI career coaching application built with the MERN stack. Integrates Google's Gemini AI to conduct interactive role-based technical exams, evaluate user responses dynamically, and generate professional ATS-optimized resumes and custom cover letters, providing students with state-of-the-art tools for career readiness.",
-    tech: ["Next.js", "React", "Node.js", "Express", "MongoDB", "Gemini AI", "Tailwind CSS", "Clerk"],
-    github: "https://github.com/Vansh7818",
+      "A production-grade AI career acceleration platform equipped with an automated Resume Builder, Tailored Cover Letter Generator, and Dynamic Mock Interview simulation.",
+    highlights: [
+      "Integrated Google Gemini APIs for contextual career content generation and automated feedback scoring.",
+      "Engineered event-driven background jobs using Inngest for automated industry data and trend refreshing.",
+      "Architected secure Clerk authentication with role-based access control (RBAC) and isolated PostgreSQL schemas via Prisma ORM.",
+    ],
+    tech: ["Next.js 14", "TypeScript", "PostgreSQL", "Prisma ORM", "Gemini AI", "Clerk", "Inngest", "Tailwind CSS"],
+    github: "https://github.com/Vansh7818/teerthankarai",
     live: "https://teerthankarai.vercel.app/",
     featured: true,
     category: "Full Stack",
+    badge: "Flagship Project",
   },
   {
-    title: "E-Commerce Full Stack Platform",
+    id: "tdc-matchmaker",
+    title: "TDC Matchmaker Operations Dashboard",
+    subtitle: "Real-Time Matchmaking Algorithm & Operations MVP",
     description:
-      "Production-grade e-commerce platform with JWT authentication, product catalog, dynamic cart, and full CRUD operations via RESTful APIs.",
-    longDescription:
-      "A scalable full-stack e-commerce solution with secure JWT authentication, modular product management, real-time cart state, and a fully responsive storefront built on the MERN stack.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
+      "Operations dashboard and matchmaking algorithmic control center designed for The Date Crew (TDC), featuring an integrated AI Copilot and pipeline monitoring.",
+    highlights: [
+      "Engineered responsive administrative dashboard with real-time candidate queuing, algorithmic affinity scoring, and workflow controls.",
+      "Integrated AI Copilot module to assist operations staff in match recommendations and conflict detection.",
+      "Built with high-performance Next.js 14 App Router, modular TypeScript components, and automated Vercel CI/CD.",
+    ],
+    tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion", "AI Copilot", "Lucide React", "Vercel"],
+    github: "https://github.com/Vansh7818/tdc-matchmaker-dashboard",
+    live: "https://tdc-matchmaker-dashboard-psi.vercel.app",
+    featured: true,
+    category: "Full Stack",
+    badge: "Production MVP",
+  },
+  {
+    id: "ecommerce-fullstack",
+    title: "Full-Stack Enterprise E-Commerce",
+    subtitle: "Scalable Storefront & Merchant Operations Platform",
+    description:
+      "End-to-end e-commerce web platform featuring complete product discovery, dynamic cart state management, checkout workflows, and a protected admin management suite.",
+    highlights: [
+      "Engineered decoupled React 19/Vite frontend with an Express.js REST API supporting dual user/admin roles.",
+      "Secured API endpoints with JWT tokens, bcrypt password hashing, Helmet headers, and IP-based rate limiting.",
+      "Modeled relational database schemas in SQLite using Sequelize ORM with comprehensive transaction handling.",
+    ],
+    tech: ["React 19", "Vite", "Node.js", "Express.js", "SQLite", "Sequelize ORM", "JWT", "Tailwind CSS"],
     github: "https://github.com/Vansh7818/ecommerce-fullstack",
     live: "https://ecommerce-fullstack-brown.vercel.app/",
     featured: true,
     category: "Full Stack",
   },
   {
-    title: "Weather Smart Task Planner",
+    id: "almeno-pipeline",
+    title: "Almeno Async Transaction Pipeline",
+    subtitle: "High-Throughput Distributed Processing Pipeline",
     description:
-      "AI-powered productivity platform integrating real-time weather forecasting with intelligent task scheduling and context-aware planning insights.",
-    longDescription:
-      "An intelligent planning application that combines live weather APIs with task management to give context-aware productivity recommendations. Features responsive dashboard UI, real-time data, and smart scheduling logic.",
-    tech: ["React", "Node.js", "MongoDB", "Weather API", "REST APIs"],
-    github: "https://github.com/Vansh7818/Weather-Smart-Task-Planner",
-    live: "",
+      "Asynchronous transaction ingestion and processing system architected with FastAPI, Celery distributed worker tasks, Redis caching, and Gemini AI analysis.",
+    highlights: [
+      "Engineered decoupled background worker queues utilizing Celery and Redis to handle concurrent non-blocking transaction streams.",
+      "Integrated Gemini AI for automated payload classification and anomaly detection across transaction payloads.",
+      "Persisted transaction states in PostgreSQL with strict ACID guarantees and audit trails.",
+    ],
+    tech: ["Python", "FastAPI", "Celery", "Redis", "PostgreSQL", "Gemini AI", "Docker"],
+    github: "https://github.com/Vansh7818/almeno-backend-internship",
     featured: true,
-    category: "Full Stack",
+    category: "AI & Systems",
+    badge: "Systems Architecture",
   },
   {
-    title: "Movie Review Platform",
+    id: "graphql-user-management",
+    title: "Enterprise GraphQL & Spring Boot User Service",
+    subtitle: "Declarative Identity & User Administration System",
     description:
-      "Full-stack movie discovery and review platform with Spring Boot backend, React frontend, and MongoDB persistence for dynamic user-generated content.",
-    longDescription:
-      "A full-stack movie platform enabling users to browse, rate, and review films. Built with a Spring Boot REST API, React SPA, and MongoDB — showcasing Java backend proficiency combined with modern frontend development.",
-    tech: ["React", "Spring Boot", "MongoDB", "Java", "REST API"],
-    github: "https://github.com/Vansh7818/movie-reviews-app",
-    live: "",
-    featured: true,
-    category: "Full Stack",
-  },
-  {
-    title: "Destinofy — AI Travel UI",
-    description:
-      "Modern AI-inspired travel website with immersive UI/UX, fluid Framer Motion animations, and a production-quality frontend architecture.",
-    longDescription:
-      "A premium AI travel platform UI built with React, Tailwind CSS, and Framer Motion. Demonstrates advanced frontend design skills including animation engineering, responsive layouts, and polished component architecture.",
-    tech: ["React", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/Vansh7818/destinofy-ai-website",
-    live: "",
-    featured: false,
-    category: "Frontend",
-  },
-  {
-    title: "Vite Developer Portfolio",
-    description:
-      "Personal developer portfolio built with React, Tailwind CSS, and Framer Motion, featuring smooth entrance animations, glassmorphic styles, and modern aesthetics.",
-    longDescription:
-      "A fully responsive and animated personal developer portfolio website designed to showcase projects, skills, and experience. Built with Vite, React, and Tailwind CSS, utilizing Framer Motion for high-quality fluid layout animations and page transitions.",
-    tech: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
-    github: "https://github.com/Vansh7818/vansh-portfolio",
-    live: "https://vansh-portfolio-three-eta.vercel.app/",
-    featured: false,
-    category: "Frontend",
-  },
-  {
-    title: "Java Auth System",
-    description:
-      "Enterprise-grade Java authentication system with secure session management, login/logout flows, and robust backend validation using Servlets and JSP.",
-    longDescription:
-      "A secure, server-side Java application implementing authentication, session lifecycle management, and backend validation using Jakarta EE Servlets and JSP — showcasing deep understanding of Java enterprise patterns.",
-    tech: ["Java", "Servlets", "JSP", "MySQL", "JDBC"],
-    github: "https://github.com/Vansh7818/java-login-logout-system",
-    live: "",
+      "Enterprise backend service built using Java and Spring Boot implementing GraphQL APIs for flexible, over-fetching-free identity and permission management.",
+    highlights: [
+      "Implemented schema-first GraphQL endpoints with Spring Boot and Java, drastically cutting client data payloads.",
+      "Integrated Spring Data JPA with MySQL, implementing pagination, filtering, and optimized SQL queries.",
+      "Structured with clean layered architecture (Controller, Service, Repository, DTO) and comprehensive unit tests.",
+    ],
+    tech: ["Java", "Spring Boot", "GraphQL", "Spring Data JPA", "MySQL", "Maven"],
+    github: "https://github.com/Vansh7818/graphql-user-management-system",
     featured: false,
     category: "Backend",
   },
   {
-    title: "Athlete Performance Tracker",
+    id: "weather-task-planner",
+    title: "Weather-Smart Task Planner",
+    subtitle: "Context-Aware Intelligent Activity Scheduler",
     description:
-      "Java-based performance analytics system to track, manage, and analyze athlete training data with efficient database persistence using JDBC and MySQL.",
-    longDescription:
-      "A data-driven Java desktop application for tracking athlete performance metrics and training records. Demonstrates strong OOP principles, JDBC database management, and structured data analysis.",
-    tech: ["Java", "MySQL", "JDBC", "OOP"],
-    github: "https://github.com/Vansh7818/athlete-performance-tracker",
-    live: "",
+      "An intelligent scheduling application that combines live meteorological forecasts with automated task feasibility analysis and explainable AI reasoning.",
+    highlights: [
+      "Integrated OpenWeather REST APIs to retrieve multi-day environmental variables (precipitation, UV index, wind speed).",
+      "Built deterministic rule-engine coupled with AI heuristics to recommend optimal time slots for outdoor and field activities.",
+      "Crafted responsive dashboard with dark-mode visualization and real-time agenda rescheduling.",
+    ],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "OpenWeather API", "REST APIs"],
+    github: "https://github.com/Vansh7818/Weather-Smart-Task-Planner",
+    featured: false,
+    category: "AI & Systems",
+  },
+  {
+    id: "sales-challan-erp",
+    title: "Sales Challan ERP System",
+    subtitle: "Automated Commercial Dispatch & Invoicing Tool",
+    description:
+      "Enterprise workflow tool built for commercial sales teams to generate, track, and export compliant sales challans and dispatch records with precision.",
+    highlights: [
+      "Automated tax, line-item, and discount calculations with print-ready PDF invoice generation.",
+      "Implemented responsive data grid for instant filtering, sorting, and customer record lookups.",
+      "Deployed on Vercel with zero-configuration client-side data caching.",
+    ],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vercel"],
+    github: "https://github.com/Vansh7818/Sales_Challan",
+    live: "https://sales-challan-erp.vercel.app",
+    featured: false,
+    category: "Full Stack",
+  },
+  {
+    id: "java-auth-system",
+    title: "Advanced Java Enterprise Auth System",
+    subtitle: "Session Lifecycle & Security Service",
+    description:
+      "Server-side Java web application implementing secure session lifecycle management, login/logout validation, and database security patterns using Jakarta Servlets and JSP.",
+    highlights: [
+      "Implemented HTTP session management with cookie security flags and timeout policies.",
+      "Utilized JDBC connection pooling and prepared statements to prevent SQL injection vulnerabilities.",
+      "Followed MVC enterprise software architecture deployed on Apache Tomcat.",
+    ],
+    tech: ["Java", "Servlets", "JSP", "MySQL", "JDBC", "Apache Tomcat"],
+    github: "https://github.com/Vansh7818/java-login-logout-system",
     featured: false,
     category: "Backend",
   },
 ];
 
-export default projects;
+export default projectsData;

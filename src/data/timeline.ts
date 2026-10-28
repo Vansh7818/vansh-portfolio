@@ -1,45 +1,48 @@
 export interface TimelineItem {
   year: string;
-  title: string;
+  role: string;
+  organization: string;
+  type: "experience" | "education" | "milestone";
   description: string;
   tags: string[];
 }
 
-const timelineData: TimelineItem[] = [
+export const timelineData: TimelineItem[] = [
   {
-    year: "2024 — Present",
-    title: "Full-Stack Development & Internship Preparation",
+    year: "Sep 2026 — Present",
+    role: "Software Development Intern",
+    organization: "KyronDataTech (Remote)",
+    type: "experience",
     description:
-      "Actively building production-grade full-stack applications using React, Next.js, Node.js, and MongoDB. Focused on clean architecture, scalable systems, and real-world deployment on Vercel.",
-    tags: ["Next.js", "React", "Node.js", "Vercel"],
+      "Developing production React dashboards for a simulated banking and UPI platform. Implementing MPIN flows, Maker-Checker authorization, and connecting to Java REST backends with JWT authentication.",
+    tags: ["React", "Java REST APIs", "JWT", "UPI Flows", "RBAC"],
   },
   {
-    year: "2024",
-    title: "Java Backend & Spring Boot Engineering",
+    year: "2024 — 2026",
+    role: "Full-Stack System Engineering",
+    organization: "Independent Projects & Open Source",
+    type: "milestone",
     description:
-      "Built enterprise-level Java applications using Spring Boot, Servlets, and JSP. Developed a full Movie Review platform with Java REST APIs and MongoDB, deepening backend engineering foundations.",
-    tags: ["Java", "Spring Boot", "REST APIs", "MongoDB"],
+      "Engineered high-impact applications: Teerthankar AI Platform (Next.js 14, Gemini AI, Clerk), TDC Matchmaker Dashboard MVP, Almeno Distributed Async Pipeline (FastAPI, Celery, Redis), and Full-Stack E-Commerce.",
+    tags: ["Next.js 14", "PostgreSQL", "Prisma", "FastAPI", "Spring Boot"],
   },
   {
-    year: "2023 — 2024",
-    title: "DSA Mastery & Algorithmic Problem Solving",
+    year: "2023 — Present",
+    role: "DSA & Core Problem Solving",
+    organization: "LeetCode & Competitive Coding",
+    type: "milestone",
     description:
-      "Dedicated practice on LeetCode and competitive platforms solving Data Structures & Algorithms problems in Java. Focused on arrays, trees, graphs, dynamic programming, and interview-level problem sets.",
+      "Solved 100+ problems in Java spanning Arrays, Hashing, Two Pointers, Trees, Backtracking, and Dynamic Programming. Strengthened system fundamentals for SDE technical rounds.",
     tags: ["Java", "DSA", "LeetCode", "Algorithms"],
   },
   {
-    year: "2023",
-    title: "Frontend Engineering & UI Craft",
+    year: "Aug 2023 — May 2027",
+    role: "B.Tech in Computer Science & Engineering",
+    organization: "Parul University (Vadodara, Gujarat)",
+    type: "education",
     description:
-      "Deepened frontend skills by building responsive, animated interfaces using React, Tailwind CSS, and Framer Motion. Developed Destinofy — a premium AI travel UI with production-quality design.",
-    tags: ["React", "Tailwind CSS", "Framer Motion", "UI/UX"],
-  },
-  {
-    year: "2022 — 2023",
-    title: "B.Tech CSE Foundations & First Projects",
-    description:
-      "Began B.Tech in Computer Science Engineering. Laid strong foundations in C, Java, OOP, DBMS, and OS. Built first full-stack applications including an E-Commerce platform and Authentication system.",
-    tags: ["Java", "C", "OOP", "DBMS"],
+      "Maintaining a strong 7.66/10 CGPA through Semester 6. Rigorous grounding in OOP, DBMS, OS, Computer Networks, and Enterprise Java software engineering.",
+    tags: ["Parul University", "CGPA 7.66", "DBMS", "OOP", "Computer Networks"],
   },
 ];
 
